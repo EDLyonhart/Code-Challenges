@@ -1,0 +1,43 @@
+def fizzbuzz(n)
+    counter = 1
+    result=[]
+    while counter <= n do
+        if (counter%3==0) && (counter%5==0)
+            result << ("FizzBuzz")
+        elsif counter%3 == 0
+            result << ("Fizz")
+        elsif counter%5 == 0
+            result << ("Buzz")
+        else
+            result << counter
+        end
+        counter+=1
+    end
+    result
+end
+
+
+- - - - - alt - - - - -
+
+# return an array
+def fizzbuzz(n)
+  (1..n).map { |x| x%15==0 ? "FizzBuzz" : x%5==0 ? "Buzz" : x%3==0 ? "Fizz" : x }
+end
+
+
+- - - - - alt for variable FizzBuzzing - - - - -
+
+def fizzBuzz(input)
+    answer = []
+    d = input.split(' ').map{|val| val.to_i}
+
+    (1..d[2]).map{ |val| val%(d[0]+d[1])==0 ? answer << "FizzBuzz" : (val%d[1]==0 ? answer << "Buzz" : (val%d[0]==0 ? answer << "Fizz" : answer << val)) }
+    answer
+end
+
+fizzBuzz(“3 5 15”) <= input like this
+
+
+
+
+
