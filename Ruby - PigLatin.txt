@@ -1,0 +1,9 @@
+def pigLatin word
+    if word[0].include?([‘a’, ‘e’, ‘i’, ‘o’, ‘u’])
+        puts word[2..-1] + "-" + word[0..1] + "ay"
+    else
+        puts word[1..-1] + "-" + word[0] + "ay"
+    end
+end
+
+pigLatin("ruby")
