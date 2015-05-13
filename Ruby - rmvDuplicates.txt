@@ -1,0 +1,69 @@
+take an array of integers and return an array with all the unique values in the proper order.
+
+
+def unique(integers)
+    uniArr = []
+    for i in integers do
+        unless uniArr.include?(i)
+        uniArr << i
+        end
+    end
+    uniArr
+end
+
+unique([1,1,2,3,5])
+ => [1,2,3,5]
+unique([7,7,7,7,7,7,7,7,7,7,7,7,7,1])
+ => [7,1]
+
+
+
+
+- - - - - - - alt - - - - - - - -
+
+# Define the unique method that removes duplicates
+
+def unique(integers)
+	new=[]
+	integers.each {|x| new.push(x) unless new.include?(x) }
+	new
+end
+
+
+
+
+
+- - - - - - - better alt - - - - - - - -
+# Define the unique method that removes duplicates
+def unique(integers)
+  integers.to_set.to_a
+end
+
+
+
+
+
+- - - - - - - best alt - - - - - - - -
+
+def unique(integers)
+  integers & integers
+end
+
+^^^explanation^^^
+
+“&” is ‘set intersection’
+
+“ary & other_ary” 
+=> new_ary 
+
+	Set Intersection — Returns a new array containing elements common to the two arrays, excluding any duplicates. The order is preserved from the original array.
+
+It compares elements using their hash and eql? methods for efficiency.
+
+
+
+
+
+
+
+
