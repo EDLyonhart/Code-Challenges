@@ -1,0 +1,31 @@
+takes a string.
+returns a string of “(“s and “)”s.
+  “(“s for unique characters
+  “)”s for duplicate characters
+
+
+- - - My answer - - -
+
+def duplicate_encode(word)
+    dup, single, encoded = [], [], []
+    letters = word.downcase.split('')
+    letters.map { |letter| single.include?(letter) ? (single.slice!(single.index(letter)) && dup << letter) : single << letter }
+    letters.map { |letter| dup.include?(letter) ? encoded << ")" : encoded << "(" }
+    encoded
+end
+
+//I created three empty arrays, to store unique characters, duplicate characters and then the output array.
+//If a char hadn’t been seen before, store it in the single array.
+//If it is encountered again, remove it from the single array and put it into the duplicate array.
+//At the end, check to see if each letter exists in the duplicate array and push a close parenthesis. If not, include an open parenthesis.
+
+
+- - - - - alt answer - - - - -
+
+def duplicate_encode(word)
+  word
+      .downcase
+      .chars										<- - - ‘.chars’ is apparently the same as “.split(‘’)”
+      .map { |char| word.downcase.count(char) > 1 ? letter = ')' : letter = '(' }	<- - - ‘.count’ returns the number of tymes a thing occurs in a string.
+      .join											absolutely perfect for this test. ‘.count’ remember that.
+end
