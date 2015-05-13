@@ -1,0 +1,27 @@
+take an array and return all the even values
+
+
+def no_odds( values )
+    evens = []
+    for i in values do
+        if i%2 == 0
+            evens << i
+        end
+    end
+    evens
+end
+
+no_odds([1,1,1,1,1,1,2,1,1,1,1,1,4,1,1,1])
+ => [2,4]
+
+
+
+def no_odds( values )
+  values.select &:even?
+end
+
+- - - or - - -
+
+def no_odds( values )
+  values.reject(&:odd?)
+end
