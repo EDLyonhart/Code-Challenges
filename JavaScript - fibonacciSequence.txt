@@ -1,0 +1,12 @@
+var fib = function (steps) {
+  var fibNum = [0, 1];
+  for (var i = 0; i < steps; i++) {
+    fibNum.push(fibNum[fibNum.length-2] + fibNum[fibNum.length-1]);
+  }
+  return fibNum[fibNum.length-2];
+}
+
+fib(4)
+ => 3
+fib(15)
+ => 610
