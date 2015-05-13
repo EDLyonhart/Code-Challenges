@@ -1,0 +1,26 @@
+this uses a nested ‘for’ loop to compare two elements in an array and return the two with the largest change, in which the smallest number exists in the array before the larger number.
+
+returning an array with the index of the day to ‘buy’ in index[0] and the day to ‘sell’ in index[1]
+
+
+function get_rich_buying_apple_stock(array) {
+    var times_to_buy_sell = [];
+    var best = 0;
+    
+    for (var i = 0; i < stock_prices_yesterday.length; i++) {
+        for (var j = i+1; j < stock_prices_yesterday.length; j++) {
+            if (stock_prices_yesterday[i] < stock_prices_yesterday[j]) {
+	            current = stock_prices_yesterday[i] - stock_prices_yesterday[j];
+    	        if ( current < best) {
+    	            best = current;
+	                times_to_buy_sell[0] = i;
+    	           	times_to_buy_sell[1] = j;
+        	    }
+            }
+        }
+    }
+    return times_to_buy_sell;
+}
+
+stock_prices_yesterday = [100, 105, 107, 160, 200, 240, 180, 190, 185, 45, 120, 180, 200];
+get_rich_buying_apple_stock(stock_prices_yesterday);
