@@ -1,0 +1,8 @@
+Input a string. return the number of vowels.
+
+
+def getCount(inputStr)
+  inputStr.scan(/[aeouiAEIOU]/).count
+end
+
+getCount(“When I first come to this country, in 1849”)
