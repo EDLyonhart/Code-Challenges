@@ -1,0 +1,62 @@
+determine which is the ‘odd man out’ between even/odd string of numbers.
+return the index+1 of the odd man out.
+
+
+- - - - - my solution - - - - -
+def iq_test(numbers)
+    evenCount = 0
+    oddCount = 0
+    
+    arr = numbers.split(' ')
+    numArr = arr.map { |element| element.to_i }
+    
+    numArr.map { |number| number.even? ? evenCount+=1 : oddCount+=1 }
+
+    if evenCount == 1
+        numArr.map { |number| if number.even?
+                return numArr.index(number)+1
+            end}
+    else
+        numArr.map { |number| if number.odd?
+            return numArr.index(number)+1
+        end
+        }
+    end
+    
+end
+
+iq_test("2 4 7 8 10")
+
+
+- - - alt - - -
+
+def iq_test(numbers)
+  evenCount = 0
+  even = nil
+  oddCount = 0
+  odd = nil
+  numbers.split(' ').each_with_index { |v, i|		<- - - takes ‘value’ and ‘index’ in one fell swoop
+    if v.to_i.odd?
+      oddCount += 1
+      odd = i+1
+    else
+      evenCount += 1
+      even = i+1
+    end
+  }
+  evenCount == 1 ? even : odd
+end
+
+
+- - - nicer still - - -
+
+def iq_test(numbers)
+  nn = numbers.split.map{|n| n.to_i%2}.join
+  par = nn[0]
+  par != nn[1] ? par != nn[2] ? 1 : 2 : nn.index("10"[par.to_i])+1
+end
+
+
+
+this is much sexier. it is destructive, but if you only need the index, then it doesn’t matter... but it ‘%2’s all the values.
+then compares [1,1,1,1,1,0,1,1,1] for non equality. looks for the index.
