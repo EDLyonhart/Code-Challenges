@@ -1,0 +1,47 @@
+switch the first half of a word with the second half (‘half’ => ‘lfha’)
+if the word.length == odd, leave the middle character in the same place.
+
+
+- - - My Solution - - -
+
+def reverse_by_center(s) 
+  newArr=[]
+  newArr << s[-(s.length/2)..-1]  #selects last half
+  if s.length.odd?
+    newArr << s[s.length/2]
+  end
+  newArr << s[0..(s.length/2)-1]  #selects first half
+  newArr.join
+end
+
+
+
+
+- - - - - alt - - - - -
+
+def reverse_by_center(s) 
+  half = s.size/2
+  [ s[-half..-1], s[half...-half], s[0...half] ].join
+end
+
+//this solution is elegant because it is able to accomplish all of this inline and without creating a new array. 
+//it is functionally similar to my solution, but a bit simpler.
+
+- - - - - alt - - - - -
+
+def reverse_by_center(s) 
+  if s.length.even?
+    s.chars.rotate(s.length/2).join
+  else
+    s = s.chars
+    s.insert(0, s.delete_at(s.length/2)).rotate(s.length/2 + 1).join
+  end
+end
+
+
+// rotate is an interesting method worth understanding.
+// rotate method affects arrays and puts the first numbers onto the end.
+//   [1,2,3,4,5].rotate => [2,3,4,5,1]
+//   [1,2,3,4,5].rotate(3) => [4,5,1,2,3]
+
+
