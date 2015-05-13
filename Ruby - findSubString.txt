@@ -1,0 +1,19 @@
+if a subString exists within a larger string, return the starting index.
+
+
+def subStrExst(string, subString)
+    
+    i=0
+    while i < string.length do
+        if string[i...i+subString.length] == subString
+            return i
+        end
+        i+=1
+    end
+    false
+    
+end
+
+subStrExst("Myla's britches are bitchin'", "britches")
+	=> 7
+
