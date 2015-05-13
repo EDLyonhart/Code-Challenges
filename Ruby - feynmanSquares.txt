@@ -1,0 +1,21 @@
+in a grid with ’n’ elements, how many squares can you make?
+
+def count_squares(n)
+    total = 0
+    n.times do
+        total = total + n**2
+        n-=1
+    end
+    total
+end
+
+
+- - - - - alt - - - - -
+
+def count_squares(n)
+  n == 1 ? 1 : (n * n) + count_squares(n - 1);
+end
+
+
+
+this is the recursive answer.
