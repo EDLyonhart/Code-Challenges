@@ -1,0 +1,36 @@
+camelCase an input string which had been connected with dashes or snake_cased
+
+def to_camel_case(str)
+  if str != ‘’
+    x = str.split(/[-|_]/)
+    x[1..-1].map { |word| word.capitalize! }
+    return x.join
+  else
+    return ‘’
+  end
+end
+
+to_camel_case("the-stealth-warrior") 
+ => “theStealthWarrior”
+
+to_camel_case(“The-stealth-warrior")
+ => “TheStealthWarrior”
+
+
+
+
+
+- - - - - alt - - - - -
+
+def to_camel_case(str)
+  str.gsub(/[_-](.)/) {"#{$1.upcase}"}
+end
+
+
+
+
+- - - - - alt - - - - - 
+
+def to_camel_case(str)
+str.split(/[\_\-]/).each{|x| x.capitalize! unless x == str.split(/[\-\_]/).first}.join("")
+end
