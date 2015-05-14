@@ -1,0 +1,60 @@
+Description:
+
+Create a program that will take in a string as input and, if there are duplicates of more than two alphabetical characters in the string, returns the string with all the extra characters in a bracket.
+
+For example, the input "aaaabbcdefffffffg" should return "aa[aa]bbcdeff[fffff]g"
+
+Please also ensure that the input is a string, and return "Please enter a valid string" if it is not.
+
+
+- - - - - - - - My Answer - - - - - - - -
+
+
+def string_parse string
+    
+    newArr = []
+    answer = ""
+    
+    if string.is_a? String 
+        chars = string.split('')
+        chars.map { |char| if ((newArr[-1].is_a? Array) && (newArr[-1][0] == char))
+                newArr[-1] << char
+            elsif (newArr[-1] == char) && (newArr[-2] == char)
+                newArr << [char]
+            else
+                newArr << char
+            end
+        }
+    else
+        return "Please enter a valid string"
+    end
+    
+    newArr.map { |el| (el.is_a? Array) ? (answer << "[" + el.join + "]") : answer << el }
+    answer
+end
+
+
+
+- First, I create an empty array and an empty string.
+- Secondly I check to see if the submission is, in fact, a string, if not, return an error message.
+- If it is a string, split it into individual chars
+  - If the last char is an array && the value stored in that array equal the current char, push it into the array.
+  - Else if the last two non-array elements both equal the current char, push char in as an array.
+  - Finally, if none of the above works, add the char to the end of the array.
+
+- Of that created array, ‘.map’ it.
+  - If the element is just a char, push it into the string
+  - If the element is an array, ‘.join’ it into a string and add brackets.
+
+- Finally, return the answer string
+
+- - - - - - - - - alt - - - - - - - -
+
+use of ‘.gsub’ and regEx is how to make this beautiful.
+wow.
+
+
+
+def string_parse string
+  string.gsub /(.)\1(\1+)/, '\1\1[\2]' rescue 'Please enter a valid string'
+end
