@@ -1,0 +1,31 @@
+// check to see if ‘(’s, ‘{’s and ‘[’s are all closed in proper order.
+
+
+def grpingCheck string
+    
+    answer, grpHsh, grpArr = [], {"(" => ")", "{" => "}", "[" =>"]" }, []
+
+    string.chars.map { |char| if ["(", "{", "["].include? char  
+           grpArr.push(char)
+        else
+            grpHsh.values_at(grpArr.pop)[0] == char ? answer << true : answer << false
+        end
+    }
+    answer.include?(false) ? false : true
+end
+
+
+grpingCheck("[{()[])}]")
+ => true
+
+grpingCheck(“[[[[(((())))]]]]”)
+ => true
+
+grpingCheck(“[{{{{{{[[[[[[((((“)
+ => false
+
+grpingCheck(“[(])”)
+ => false
+
+
+// I create an array, and when an opening grouper( ‘(‘, ’{‘ or ’[‘ ) is seen, push it into the hash. When a closing grouper is seen, pop out the last element of that array and it should match (checked by comparing it against the key/value hash. if it does, push ‘true’ into the answer array, if it doesn’t, push false. if the answer array has any ‘false’s in it, then it doesn’t pass the test.
