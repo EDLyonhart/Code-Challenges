@@ -1,0 +1,29 @@
+how many different squares are there in a grid of NxN squares?
+
+
+- - - - - my solution - - - - -
+
+function countSquares(n){
+    solution = 0;
+    for(var i = n; i > 0; i--) {
+        solution = solution + Math.pow(i,2);
+    }
+    return solution;
+}
+
+
+- square every number between ’n’ and ‘1’ and add them together.
+
+
+- - - alt - - -
+this is a recursive solution.
+not bad, but its simple enough that a strait forward solution seems to work just as well.
+it returns n squared plus n-1 squared plus n-2 squares . . . til n === 1.
+
+
+function countSquares(n){
+  if (n === 1) return 1;
+  return n*n + countSquares(n-1);
+}
+
+
