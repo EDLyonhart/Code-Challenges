@@ -1,0 +1,43 @@
+Take a string of numbers (like such: ("2 4 7 8 10”)), figure out if there is a single even number of a single odd number. return the ‘real’ index of that number (not 0 indexed)
+
+
+- - - - - My Solution - - - - -
+
+function iqTest(numbers){
+    var numArr = numbers.split(' ');
+    var evens = [];
+    var odds = [];
+
+    numbers.split(' ').map(function(num){
+        num%2 === 0 ? evens.push(num) : odds.push(num);
+    });
+    return evens.length === 1 ? numArr.indexOf(evens[0])+1 : numArr.indexOf(odds[0])+1
+}
+
+
+iqTest("2 4 7 8 10");
+
+- split the given number-string into an array
+- create two dummy arrays, ‘evens’ and ‘odds’ to be pushed into
+- .map over each number pushing it into either ‘evens’ or ‘odds’ arrays.
+- if ‘evens’ has a single element, find the index+1 of it in the numArr
+  - else find the index+1 of the odd number in the numArr.
+
+
+
+- - - Alt - - -
+whew. okay...
+- m is being set to an odd number or an even number based on . . .
+- . . .
+- return the index+1 of ‘m’ in numbers (as split into a real array)
+
+
+
+function iqTest(numbers){
+  var m = numbers.match(/[02468]\b.*[02468]\b/.test(numbers) ? /\d*[13579]\b/ : /\d*[02468]\b/)[0];
+  return numbers.split(' ').indexOf(m) + 1;
+}
+
+
+- all things told, I like my solution better. It is maybe not as sexy, but it is much more legible.
+- but I still want to know regEx better.
