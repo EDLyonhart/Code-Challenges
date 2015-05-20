@@ -1,0 +1,42 @@
+
+Return the number of vowels in the given string.
+
+
+- - - - - my answer - - - - -
+
+function getCount(str) {
+  var vowelsCount = str.split(/[aeiou]/i).length-1;
+  
+  return vowelsCount;
+}
+
+vowel_count("When I First come to this country in 1849");
+
+
+- - - explanation - - -
+
+- ‘.split’ divides the string anywhere the regEx is fulfilled.
+- the regex ‘/[aeiou]/i’ indicates any instance of “aeiou” (‘/i’ indicates a case insensitive regEx)
+- this will return an array looking like:
+	=> [ 'Wh', 'n ', ' F', 'rst c', 'm', ' t', ' th', 's c', '', 'ntry ', 'n 1849' ]
+- the above array.length-1 returns the number of elements in this newly created array.
+
+-possible issues would be a string which begins with or ends with a vowel.
+
+
+
+- - - - - alternative - - - - -
+I like this method better. its similar, but removes some of the possible edge cases the above function leaves.
+
+
+var getCount = function (str) {
+    var matches = str.match(/[aeiou]/gi);
+    var vowelsCount = matches ? matches.length : 0;
+    return(vowelsCount);
+};
+
+getCount("When I First come to this country in 1849");
+
+
+- use ‘.match’ to find each instance of a regular expression.
+- ternary statement evaluates left to right. return matches if true, return 0 if not.
