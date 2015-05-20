@@ -1,0 +1,36 @@
+You're given a single word. Your task is to swap the halves. If the word has an uneven length, leave the character in the middle at that position and swap the chunks around it.
+
+
+- - - - - - my solution  - - - - - - -
+
+function reverseByCenter(s){
+    
+    var half = Math.floor(s.length/2);    <- - - alt: var half = ~~(s.length/2)
+    var first_half = s.slice(0, half);
+    
+    if (s.length%2===0) {
+        var last_half = s.slice(half);
+        return (last_half + first_half);
+    } else {
+        var last_half = s.slice(half+1);
+        return (last_half + s[half] + first_half);
+    }
+
+}
+
+- find the half-way point of the string. (the double tilde is shorthand for Math.floor(). good to know.)
+- if the string is even
+	define the last half and return last_half + first_half
+- else if the string is odd
+	define the last half (omit the center char), return last_half + center char + first_half
+
+
+
+- - - alt - - - 
+this is just the slimmed down version of mine.
+much sleeker. no need for the if/else statement.
+
+function reverseByCenter(s){
+  var l = ~~(s.length / 2);
+  return s.slice(-l) + s.slice(l, l + (s.length % 2)) + s.slice(0, l);
+}
