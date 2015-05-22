@@ -1,0 +1,42 @@
+given an array of object like this: ([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ], return properly formatted.
+empty array return: “”
+array with one object return : “Name”
+	with 2 objects return : “Name1 & Name2”
+	with 3+ objects return : “Name1, Name2, ...  Name[n-1] & Name[n]”
+
+
+- - - - - my solution - - - - -
+
+function list(names){
+  return names.reduce(function(prev, current, index, array){
+    if (index === 0){
+      return current.name;
+    }
+    else if (index === array.length - 1){
+      return prev + ' & ' + current.name;
+    } 
+    else {
+      return prev + ', ' + current.name;
+    }
+  }, '');
+ }
+
+
+- .reduce to apply function to all elements
+ - takes in four parameters
+ - with one elements do . . .
+ - when one from the end, return ‘prev & current’
+ - earlier return ‘prev, current’
+
+
+
+- - - - alt - - - - 
+
+function list( names ){
+  return names.reduce(function(prev, curr, i, arr){
+    return prev + curr.name + (i<arr.length-2?', ':i==arr.length-2?' & ':'');
+  }, '');
+}
+
+- nested ternary statements looking at arr length
+- kinda difficult to read but succinct.
