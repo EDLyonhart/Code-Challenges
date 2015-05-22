@@ -1,0 +1,12 @@
+def anagram(string1, string2)
+    (string1.split('').sort == string2.split('').sort) ? true : false
+end
+
+
+anagram("listen", "silent")
+ => true
+
+anagram(“not”, “anagram”)
+ => false
+
+- takes two strings, splits them both into individual chars, sorts them and looks for equality.
