@@ -1,0 +1,61 @@
+given a string of space separated numbers, and have to return the highest and lowest number.
+
+
+- - - - - My solution - - - - -
+
+function highAndLow(numbers){
+  var numArr = [];
+  numbers.split(" ").map(function(num){ numArr.push(parseInt(num)); });
+  
+  var sortedArr = (numArr.sort(function(a, b){ return a-b; }));
+  
+  return (sortedArr[sortedArr.length-1]+ ' ' +sortedArr[0]);
+}
+
+
+
+- I start by initializing an empty array
+- I then take the number-string and split it (into an array of strings)
+  - Inside of that I ‘.map’ over the array of strings, convert them into ints and push them into the above initialized array.
+- I sort the array of ints
+- Return the last of the sorted array (lowest), and the first (highest)
+
+
+
+- - - - - alt - - - - -
+
+function highAndLow(numbers) {
+  numbers = numbers.split(' ').map(Number)
+  
+  var min = Math.min.apply(null, numbers)
+  var max = Math.max.apply(null, numbers)
+  
+  return max + ' ' + min
+}
+
+- the ‘.map(Number)’ as opposed to ‘parseInt()’
+- I like this solution. it just uses the ‘.max’ and ‘.min’. No sorting.
+
+
+
+
+
+- - - - - alt - - - - -
+
+function highAndLow(numbers){
+  numbers = numbers.split(' ').map(Number);
+  return Math.max.apply(0, numbers) + ' ' + Math.min.apply(0, numbers);
+}
+
+- This is similar to the above, just a little more succinct. 
+
+
+
+
+
+
+
+
+
+
+
