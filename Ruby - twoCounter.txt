@@ -1,0 +1,23 @@
+Write a function to count all the number of 2s between 0 and n
+
+- - - - - - My Answer - - - - - -
+
+def twoCounter(n)
+    counter, numArr = 0, (0..n).to_a
+    
+    numArr.join('').split('').map { |num| num == "2" ? counter+=1 : nil }
+    counter
+end
+
+twoCounter(300)
+ => 160
+
+twoCounter(13)
+ => 2
+
+
+- initialize a counter and a numArr (with all ints between 0 and n)
+- use ‘.join’ and then ‘.split’
+  - this joins all the ints as a string
+  - then splits the string into individual chars
+- map over this and look for ‘2’. increment the counter for each instance.
