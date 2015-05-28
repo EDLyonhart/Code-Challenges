@@ -1,0 +1,48 @@
+Write a function that calculates the least common multiple of its arguments; each argument is assumed to be a non-negative integer.
+
+
+- - - - - - - the final answer I came up with - - - - - - - -
+
+def lcm(*args)
+    args.reduce(:lcm)
+end
+
+- reduce the input arguments
+- call the ‘lcm’ method (as a symbol) on each element til the result ensues!
+
+
+- - - - - - - what I had prior to finding the ‘lcm’ method - - - - - - -
+
+- I started out writing the two edge case (that there is only one element and that the two ‘biggest’ elements are both ‘0’)
+- I decided to start out by getting rid of every element of the array which wasn’t useful
+  - duplicates
+  - things which were were divisible by other elements already provided (e.g.: didn’t need both ‘9’ and ’18’).
+- I was able to whittle the list down to [4, 7, 10, 15, 17, 18].
+. . .
+. . .
+- Then I found ‘lcm’
+
+- - - - - - - - - alt - - - - - - - -
+
+
+def gcd(a,b)
+    while ! b.zero?
+        a, b = b, a % b
+    end
+    a
+end
+def lcm(*args)
+  args.reduce {|a, b| a*b / gcd(a,b)}
+end
+
+lcm(5, 6, 7, 9, 6, 2, 9, 18, 4, 5, 15, 15, 10, 17, 7)
+ # => 21420
+
+
+
+
+
+
+
+
+
