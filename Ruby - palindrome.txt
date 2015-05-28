@@ -1,0 +1,16 @@
+def palindrome string
+    chars = string.downcase.split(/\W/).join.split("")
+    chars == chars.reverse ? true : false
+end
+
+
+palindrome("A man, a plan, a canal: panama")
+ => true
+palindrome("palindrome")
+ => false
+
+
+- downcase everything for uniformity.
+- using regular expressions, split a string to remove all non-word characters
+  - join and split to divide into individual word characters
+- ternary statement to compare them verses the reverse of them.
