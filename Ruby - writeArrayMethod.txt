@@ -1,0 +1,21 @@
+Define a new instance method on the Array class called second, which returns the second item in an array (similar to the way .first and .last work in Ruby).
+
+If there is no element with index 1 in the array, return nil.
+
+
+- - - - - - my answer - - - - - -
+
+class Array
+    def second
+        size > 1 ? self[1] : nil
+    end
+end
+
+
+- - - - alt - - - -
+
+class Array
+  def second
+    self[1] rescue nil
+  end
+end
