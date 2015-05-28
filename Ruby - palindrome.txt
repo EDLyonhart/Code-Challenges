@@ -1,5 +1,5 @@
 def palindrome string
-    chars = string.downcase.split(/\W/).join.split("")
+    chars = string.downcase.split(/\W/).join
     chars == chars.reverse ? true : false
 end
 
