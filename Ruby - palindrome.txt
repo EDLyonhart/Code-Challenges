@@ -12,5 +12,5 @@ palindrome("palindrome")
 
 - downcase everything for uniformity.
 - using regular expressions, split a string to remove all non-word characters
-  - join and split to divide into individual word characters
-- ternary statement to compare them verses the reverse of them.
+  - rejoin
+- ternary statement to compare new string verses the reverse of itself.
