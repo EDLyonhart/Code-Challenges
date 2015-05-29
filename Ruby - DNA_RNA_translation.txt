@@ -1,0 +1,63 @@
+given a string of chars (“AUGGCGUUCAGCUUUCUAUGGAGGGUAGUGUACCCAUGCUGA”), use the codon dictionary to translate the “DNA sequence” into an “RNA sequence. the “Stop” char should end the string.
+
+
+- - - - - - my solution - - - - - -
+
+def protein(rna)
+    
+    codon = {
+             'UUC'=>'F', 'UUU'=>'F', 'UUA'=>'L', 'UUG'=>'L', 'CUU'=>'L', 'CUC'=>'L','CUA'=>'L', 'CUG'=>'L', 'AUU'=>'I', 'AUC'=>'I', 'AUA'=>'I', 'AUG'=>'M', 'GUU'=>'V', 'GUC'=>'V', 'GUA'=>'V', 'GUG'=>'V', 'UCU'=>'S', 'UCC'=>'S', 'UCA'=>'S', 'UCG'=>'S', 'AGU'=>'S', 'AGC'=>'S', 'CCU'=>'P', 'CCC'=>'P', 'CCA'=>'P', 'CCG'=>'P', 'ACU'=>'T', 'ACC'=>'T', 'ACA'=>'T', 'ACG'=>'T', 'GCU'=>'A', 'GCC'=>'A', 'GCA'=>'A', 'GCG'=>'A', 'UAU'=>'Y', 'UAC'=>'Y', 'CAU'=>'H', 'CAC'=>'H', 'CAA'=>'Q', 'CAG'=>'Q', 'AAU'=>'N', 'AAC'=>'N', 'AAA'=>'K', 'AAG'=>'K', 'GAU'=>'D', 'GAC'=>'D', 'GAA'=>'E', 'GAG'=>'E', 'UGU'=>'C', 'UGC'=>'C', 'UGG'=>'W', 'CGU'=>'R', 'CGC'=>'R', 'CGA'=>'R', 'CGG'=>'R', 'AGA'=>'R', 'AGG'=>'R', 'GGU'=>'G',  'GGC'=>'G', 'GGA'=>'G', 'GGG'=>'G', 'UAA'=>'Stop', 'UGA'=>'Stop', 'UAG'=>'Stop'
+    }
+    
+    
+    answer = []
+    rnaChars = rna.scan(/.{1,#{3}}/)
+    word = rnaChars.map {|char| codon.values_at(char)}.flatten
+    word.map { |letter| (letter != "Stop") ? answer << letter : answer.join }
+    answer.join
+end
+
+
+protein("GCGACAGCUGUGCACAUAGGUAGGUAGGAC")
+
+# => "ATAVHIGRD"
+
+- I start by initializing an array which I will push my answer into
+- Then I use regEx to split the input string of chars into their three
+- Each of those three are translated using the provided dictionary.
+- Each of those translated chars is then pushed into the answer array.
+  - This ends either when all the chars are done, or when the “Stop” sequence is come across.
+-Return joined answer.
+
+- - - - - - - alt - - - - - - -
+
+def protein(rna)
+    rna.scan(/.../).map{|i| $codons[i]}.take_while{|i| i != "Stop"}.join
+end
+
+- the ‘$codons’ is the dictionary.
+- their regEx is simpler than mine. clearer.
+- ‘take_while’ is like map which exits when it evaluates ‘nil’ or ‘false’. its exactly what I was looking for!
+  - good to know. good to remember.
+
+- - - - - - - alt - - - - - - - 
+
+def protein(rna)
+  seq = ''
+  rna = rna.chars
+  
+  until rna.empty? do
+    codon = $codons[rna.shift(3).join]
+    break if codon == 'Stop'
+    seq += codon
+  end
+  
+  seq
+end
+
+- start by initializing a string
+- translate the input into individual chars
+- until loop which evaluates three chars at a time
+  - if they evaluate ‘Stop’ then it breaks the process
+  - otherwise add it to the seq string
+- return the string.
