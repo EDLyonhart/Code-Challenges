@@ -1,0 +1,21 @@
+Complete the solution so that it sorts an array of hashes passed in by the hash key specified.
+
+- - - - - - my answer - - - - - - -
+
+
+def solution(array, key)
+    array.sort_by!{ |e| e.values }
+end
+
+
+- sort the array by the value stored at in each mini-hash.
+
+
+- - - alt - - -
+
+def solution(array, key)
+  array.sort_by {|a| a[key]}
+end
+
+- this uses the input ‘key’ variable.
+  - if test cases might have given a hash with a different key, and this would control for it.
