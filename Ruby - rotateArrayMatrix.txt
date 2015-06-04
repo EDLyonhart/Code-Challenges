@@ -16,7 +16,7 @@ def rotate matrix, direction
 end
 
 
-- start with initializing a ‘answer array’ and an index-counter
+- start with initializing two empty arrays and an index-counter
 - a number of times (which ever is bigger (columns or rows)), do the following:
   - each pass through will only look at index ‘0’ or ‘1’ or ‘2’ ... etc pushing those items in sequentially.
   - if the value does not equal ‘nil’ (which would occur because the matrix had more rows than columns), push the value into newMatrix.
