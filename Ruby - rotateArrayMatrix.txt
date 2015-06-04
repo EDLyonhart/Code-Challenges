@@ -8,22 +8,18 @@ The function accepts two parameters: an array, and a string specifying the direc
 
 def rotate matrix, direction
     newMatrix, finalMatrix, i = [], [], 0
-    (matrix.length).times do
+    (matrix.length > matrix[0].length ? matrix.length : matrix[0].length).times do
         matrix.map { |row| row[i] != nil ? newMatrix << row[i] : nil }
         i+=1
     end
-    if direction == 'clockwise'
-        finalMatrix = newMatrix.each_slice(matrix.length).to_a.map { |newRow| newRow.reverse}
-    else
-        finalMatrix = newMatrix.each_slice(matrix.length).to_a.reverse
-    end
+    direction == 'clockwise' ? newMatrix.each_slice(matrix.length).to_a.map { |newRow| newRow.reverse} : newMatrix.each_slice(matrix.length).to_a.reverse
 end
 
 
 - start with initializing a ‘answer array’ and an index-counter
-- we’re going to look at index ‘i’ of each row and push it into the answer array
-  - if we’re dealing with a matrix which is not square, ‘nil’ values will be generated. don’t push those.
-- each pass through will only look at index ‘0’ or ‘1’ or ‘2’ ... etc pushing those items in sequentially.
+- a number of times (which ever is bigger (columns or rows)), do the following:
+  - each pass through will only look at index ‘0’ or ‘1’ or ‘2’ ... etc pushing those items in sequentially.
+  - if the value does not equal ‘nil’ (which would occur because the matrix had more rows than columns), push the value into newMatrix.
 - increment ‘i’ up one with each complete pass.
 
 ^^^ (this has the function of switching ‘rows’ with ‘columns’) ^^^
@@ -34,6 +30,31 @@ end
 
 
 
+
+
+- - - alt - - -
+
+def rotate matrix, direction
+  case direction
+  when 'clockwise'
+    matrix.transpose.map(&:reverse)
+  when 'counter-clockwise'
+    matrix.transpose.reverse
+  end
+end
+
+
+- - - alt - - -
+
+def rotate matrix, direction
+  direction == "clockwise" ? matrix.transpose.map {|e| e.reverse} : matrix.transpose.reverse
+end
+
+
+- ‘.transpose’ takes in an array of arrays and swaps the rows and columns. essentially the top 4 lines of my code.
+  - then reverse either the columns within each row
+  - or the order of whole rows
+- done and done
 
 
 
