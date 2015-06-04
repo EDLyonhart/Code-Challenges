@@ -1,0 +1,46 @@
+Write a function that will return the count of distinct case-insensitive alphabetic characters that occur more than once in the given string. The given string can be assumed to contain only uppercase and lowercase alphabets.
+
+
+- - - - - - - my answer - - - - - - -
+
+
+def duplicate_count(text)
+    uniChars, total = {}, 0
+    text.downcase.chars.map { |char| uniChars.has_key?(char) ? uniChars[char] += 1 : uniChars[char] = 1 }
+    uniChars.values.map { |occurance| occurance > 1 ? total+=1 : nil }
+    total
+end
+
+
+- initialize an empty hash and a counter
+- take input text, downcast it, split it and iterate over each char
+  - if the char doesn’t exists in the hash, add it with an ‘occurrence’ of 1
+  - if the char does exist, increment the occurrence up one.
+- look at each the values stored in the uniChars hash
+  - if the value is greater than 1 increment the ‘total’ up by 1
+-return total
+
+
+- - - alt - - -
+
+def duplicate_count(text)
+  ('a'..'z').count { |c| text.downcase.count(c) > 1 }
+end
+
+- this answer starts by creating a range of characters
+- they then may over each char of the alphabet comparing it to the (downcased) letters supplied in ‘text’
+
+- - - alt - - -
+
+def duplicate_count(text)
+   text
+    .downcase
+    .chars
+    .sort
+    .chunk { |c| c }
+    .count { |_, occurrences| occurrences.count > 1 }
+
+- oh my god. ‘.chunk’ is super interesting.
+  - it groups like elements in an array together
+    - in this challenge they sort characters together and then ‘chunk’ them together.
+- i don’t fully understand the last line, but they’re doing something similar to what I did above looking for occurrences above 1
