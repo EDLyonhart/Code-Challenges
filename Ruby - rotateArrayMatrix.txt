@@ -1,0 +1,37 @@
+Write a rotate function that rotates a two-dimensional array (a matrix) either clockwise or anti-clockwise by 90 degrees, and returns the rotated array.
+
+The function accepts two parameters: an array, and a string specifying the direction or rotation. The direction will be either "clockwise" or "counter-clockwise".
+
+
+- - - - - - - my answer for a square - - - - - - -
+
+
+def rotate matrix, direction
+    newMatrix, i = [], 0
+    (matrix.length).times do
+        matrix.map { |row| newMatrix << row[i] }
+        i+=1
+    end
+    direction == 'clockwise' ? 
+        newMatrix.each_slice(matrix.length).to_a.map { |newRow| newRow.reverse} :
+        newMatrix.each_slice(matrix.length).to_a.reverse
+end
+
+
+- start with initializing a ‘answer array’ and an index-counter
+- we’re going to look at index ‘i’ of each row and push it into the answer array
+- each pass through will only look at index ‘0’ or ‘1’ or ‘2’ ... etc pushing those items in sequentially.
+- increment ‘i’ up one with each complete pass.
+
+^^^ (this has the function of switching ‘rows’ with ‘columns’) ^^^
+
+- if direction was ‘clockwise’ the answer array needs to be broken up into the original size rows (using ‘.each_slice’)
+  - then reverse each row-array to correctly position each element
+- else if direction was ‘counter-clockwise’ we reverse the position of each row.
+
+
+
+
+
+
+
