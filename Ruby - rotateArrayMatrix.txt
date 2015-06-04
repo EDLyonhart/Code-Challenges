@@ -3,23 +3,26 @@ Write a rotate function that rotates a two-dimensional array (a matrix) either c
 The function accepts two parameters: an array, and a string specifying the direction or rotation. The direction will be either "clockwise" or "counter-clockwise".
 
 
-- - - - - - - my answer for a square - - - - - - -
+- - - - - - - my answer (updated for non-square matrix) - - - - - - -
 
 
 def rotate matrix, direction
-    newMatrix, i = [], 0
+    newMatrix, finalMatrix, i = [], [], 0
     (matrix.length).times do
-        matrix.map { |row| newMatrix << row[i] }
+        matrix.map { |row| row[i] != nil ? newMatrix << row[i] : nil }
         i+=1
     end
-    direction == 'clockwise' ? 
-        newMatrix.each_slice(matrix.length).to_a.map { |newRow| newRow.reverse} :
-        newMatrix.each_slice(matrix.length).to_a.reverse
+    if direction == 'clockwise'
+        finalMatrix = newMatrix.each_slice(matrix.length).to_a.map { |newRow| newRow.reverse}
+    else
+        finalMatrix = newMatrix.each_slice(matrix.length).to_a.reverse
+    end
 end
 
 
 - start with initializing a ‘answer array’ and an index-counter
 - we’re going to look at index ‘i’ of each row and push it into the answer array
+  - if we’re dealing with a matrix which is not square, ‘nil’ values will be generated. don’t push those.
 - each pass through will only look at index ‘0’ or ‘1’ or ‘2’ ... etc pushing those items in sequentially.
 - increment ‘i’ up one with each complete pass.
 
