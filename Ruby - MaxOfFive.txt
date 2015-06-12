@@ -1,0 +1,67 @@
+- - - - Description - - - -
+
+Complete the solution so that it returns the largest five digit number found within within the number given.. The number will be passed in as a string of only digits. It should return a five digit integer. The number passed may be as large as 1000 digits.
+
+aka: parse through a string of digits and find the largest, 5 consecutive digit, number.
+
+- - - - - - - My solution - - - - - - -
+
+def solution(digits)
+    i, answer, temp = 0, 0, []
+    intArr = digits.split("").map { |i| i.to_i }
+    (intArr.length-4).times do
+        (temp = [intArr[i], intArr[i+1], intArr[i+2], intArr[i+3], intArr[i+4]].join.to_i).max
+        i+=1
+    end
+    answer
+end
+
+solution("123451234982345698889952345")
+# => 99523
+
+- I start by initializing a few variables.
+  - ‘i’ will be my index counter
+  - answer will be the most up-to-date answer as it is incremented through
+  - temp will be the current series of five digits.
+- Take the given string of digits, split it into individual chars, convert them to an array of ints and save the array
+- look at each integer (excluding the last 4)
+  - add the next 4 digits on, join and convert to a single int.
+  - check that agains the most up-to-date answer
+    - if its bigger, set it as the up-to-date answer
+    - if its smaller ignore it.
+  - increment the next index to start at by +1
+- return the up-to-date answer
+
+
+
+- - - alt - - -
+
+def solution(digits)
+  digits.split('').each_cons(5).max.join.to_i
+end
+
+- ‘.each_cons(n)’ looks at each set of n digits
+- call ‘.max’ on ‘em.
+
+- - - alt - - -
+
+def solution(digits)
+  digits.scan(/\d{5}/).max.to_i
+end
+
+- regEx solution. looking at each grouping of 5 digits.
+- call ‘.max’ on ‘em.
+
+- - - alt - - -
+
+def solution(digits)
+  (0..digits.length).collect{|i| digits[i, 5].to_i}.max
+end
+
+- ‘.collect’ is similar to ‘.map’
+- increments through each element and looks at it and the next 5.
+- call ‘.max’ on ‘em.
+
+
+
+
