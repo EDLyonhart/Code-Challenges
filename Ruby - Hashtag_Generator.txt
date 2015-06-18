@@ -1,0 +1,29 @@
+Description:
+
+The marketing team are spending way too much time typing in hashtags.
+Let's help them with out own Hashtag Generator!
+
+Here's the deal:
+
+If the final result is longer than 140 chars it must return false.
+If the input is a empty string it must return false.
+It must start with a hashtag (#).
+All words must have their first letter capitalized.
+Example Input to Output:
+
+" Hello there thanks for trying my Kata" => "#HelloThereThanksForTryingMyKata"
+
+" Hello World " => "#HelloWorld"
+
+
+
+
+- - - - - My solution - - - - - -
+
+def generateHashtag(str)
+  str.empty? || str.gsub(" ","").length+1>140 ? false : "#"+str.split(" ").map {|n| n.capitalize}.join()
+end
+
+- First check to see if string is empty or greater than 140 chars (after empty spaces removed)
+  - return false if either of those are true
+- Then add a “#” to the front, split on spaces, capitalize each letter, join without spaces
