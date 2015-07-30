@@ -1,0 +1,34 @@
+Return the first unique integer in an array. Return nil if one does not exist (edge cases)
+
+
+- - - - - my answer - - - - -
+
+def first_unique arr
+    unless arr.is_a?(Array)
+        return nil
+    end
+    
+    if (arr.uniq.length < 2)
+        return nil
+    end
+    
+    unless arr.all? {|i| i.is_a?(Integer) }
+        return nil
+    end
+    
+    counts = Hash.new 0
+    
+    arr.each do |e|
+        counts[e] += 1
+    end
+    
+    counts.delete_if {|key, val| val > 1}.first[0]
+end
+
+
+- the first nine lines control for the edge cases (must be an Array type and must have more than one unique value, and all values must be Integers)
+- after that I initialize a hash ()
+- each element is pushed into the hash, values incremented up by one if the value already exists
+- delete all elements of the hash with a value greater than one
+- the first returned will be an array containing the value and its ‘count’ (which will be 1)
+- the [0]th index will be the answer.
