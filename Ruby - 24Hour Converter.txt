@@ -1,0 +1,26 @@
+# Given a time in AM/PM format, convert it to military (24-hour) time.
+#
+# Note: Midnight is "12:00:00AM" on a 12-hour clock, and "00:00:00" on a 24-hour clock. Noon is "12:00:00PM" on a 12-hour clock, and "12:00:00" on a 24-hour clock.
+#
+# Input Format :: A single string containing a time in 12-hour clock format (i.e.: hh:mm:ssAM or hh:mm:ssPM).
+#
+# Output Format
+# Convert and print the given time in 12-hour format.
+#
+# Sample Input :: 07:05:45PM
+# Sample Output :: 19:05:45
+#
+# Solution:
+
+def time_converter(time)
+  if time[-2..-1] == "PM"
+    (time[0..1] == "12") ? (puts "12" + time[2..-3]) : (puts (time[0..1].to_i+12).to_s + time[2..-3])
+  else
+    (time[0..1] == "12") ? (puts "00" + time[2..-3]) : (puts time[0..-3])
+  end
+end
+
+time_converter("07:05:45PM")
+time_converter("12:00:00PM")
+time_converter("12:00:00AM")
+time_converter("07:05:45PM")
