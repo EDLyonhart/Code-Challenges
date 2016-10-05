@@ -1,0 +1,32 @@
+'''
+This was a code challenge to implement a version of insertion sort.
+Print out each step along the way (show your work!)
+'''
+
+def sorting(arr)
+  p arr
+
+  # execute the following until all are in order
+  until (arr.each_cons(2).all?{|i,j| i <= j}) do
+    index = 0
+
+    (arr.size-1).times do
+      # find an element out of order.
+      if (arr[index] > arr[index+1])
+
+        # swap the two
+        arr[index], arr[index+1] = arr[index+1], arr[index]
+        p arr
+      else
+        index+=1
+      end
+    end
+
+    p arr
+  end
+
+end
+
+# sorting([1, 0, 2, -1, -2, 51234, 2345345, 129, 9, 99912, 3246, 6, 9, 7, 17])
+# sorting([2, 4, 6, 8, 3])
+# sorting([1, 1, 1, -1, 3])
