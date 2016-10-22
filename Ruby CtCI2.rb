@@ -13,6 +13,8 @@ The big O notation of this is...
   searching through the dictionary is the bottle neck.
 
   Other possiblity: I know that Hashes have very quick lookup speed. So maybe key is the "abbc" and value is index?
+   ^^ Hashs require unique keys. So, its still a possibility, but would add some extra logic.
+      getting more convoluded might outweigh the gain in efficiency. 
 '''
 
 
