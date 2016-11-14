@@ -7,6 +7,11 @@ find and print out any unique elements
   The first line contains a single integer, N, denoting the number of integers in the array. 
   The second line contains N space-separated integers describing the respective values in A.
 
+Big-O notation of this solution is O(n)
+
+alternative solutions include a brute force, double loop looking for similar ints and moving on when one is found. 
+  Big-O of that would be O(n^2)
+
 */
 
 function processData(input) {
