@@ -88,5 +88,32 @@ p "End at #{Time.now}"
 
 
 
+# added a second solution. A different approach utilizing the ".each_cons" method
+
+def find_longest_palindrome(text)
+  text = text.downcase.gsub(/[^a-z]/i, '')
+  text_arr = text.split("")
+  size = text.length
+  answer_string = nil
+  
+  until answer_string do
+    
+    if size < 1 
+      return [0, -1]
+    end
+    
+    text_arr.each_cons(size) do |a| 
+      is_palindrome?(a.join) ? answer_string = a.join : next
+    end
+    
+    size-=1
+  end
+  
+  [text.index(answer_string), answer_string.length]
+end
+
+def is_palindrome?(string)
+  string == string.reverse
+end
 
 
